@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    {% load widget_tweaks %}
+    <head>
+        <meta charset="utf-8">
+        <title>ClickCart | My Account</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet"> 
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="../../static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="../../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="../../static/css/style.css" rel="stylesheet">
+
+        <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        <style>
+            .emp-profile{
+                padding: 3%;
+                margin-top: 3%;
+                margin-bottom: 3%;
+                border-radius: 0.5rem;
+                background: #fff;
+            }
+            .profile-img{
+                text-align: center;
+            }
+            .profile-img img{
+                width: 70%;
+                height: 100%;
+            }
+            .profile-img .file {
+                position: relative;
+                overflow: hidden;
+                margin-top: -20%;
+                width: 70%;
+                border: none;
+                border-radius: 0;
+                font-size: 15px;
+                background: #212529b8;
+            }
+            .profile-img .file input {
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                top: 0;
+            }
+            .profile-head h5{
+                color: #333;
+            }
+            .profile-head h6{
+                color: #0062cc;
+            }
+            .profile-edit-btn{
+                border: none;
+                border-radius: 1.5rem;
+                width: 70%;
+                padding: 2%;
+                font-weight: 600;
+                color: #6c757d;
+                cursor: pointer;
+            }
+            .proile-rating{
+                font-size: 12px;
+                color: #818182;
+                margin-top: 5%;
+            }
+            .proile-rating span{
+                color: #495057;
+                font-size: 15px;
+                font-weight: 600;
+            }
+            .profile-head .nav-tabs .nav-link{
+                font-weight:600;
+                border: none;
+            }
+            .profile-head .nav-tabs .nav-link.active{
+                border: none;
+                border-bottom:2px solid #0062cc;
+            }
+            .profile-work{
+                padding: 14%;
+                margin-top: -15%;
+            }
+            .profile-work p{
+                font-size: 12px;
+                color: #818182;
+                font-weight: 600;
+                margin-top: 10%;
+            }
+            .profile-work a{
+                text-decoration: none;
+                color: #495057;
+                font-weight: 600;
+                font-size: 14px;
+            }
+            .profile-work ul{
+                list-style: none;
+            }
+            .profile-tab label{
+                font-weight: 600;
+            }
+            .profile-tab p{
+                font-weight: 600;
+                color: #0062cc;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        {% include "ss/customer_navbar.html" %}
+        
+        <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">My Account</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active text-white">My Account</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
+
+
+        <div class="container emp-profile">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{% static customer.profile_pic.url %}" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="profile-head">
+                            <div class="container" style="padding-bottom: 50px;">
+                                    <h5>
+                                        {{user.first_name}} {{user.last_name}}
+                                    </h5></div>
+                                    <p>About</p>
+                                    <hr>
+                            <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item"> -->
+                                    <!-- <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> -->
+                                        <!-- About -->
+
+                                    <!-- </a> -->
+                                <!-- </li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/edit-profile">
+                            <button type="submit" class="profile-edit-btn" name="btnAddMore">Edit Profile</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{request.user}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{user.first_name}} {{user.last_name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{customer.email}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{customer.mobile}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{customer.address}} </p>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+        </div>
+
+        {% include "ss/customer_footer.html" %} 
+        
+        
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/lib/easing/easing.min.js"></script>
+    <script src="../../static/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../static/js/main.js"></script>
+    </body>
+
+</html>

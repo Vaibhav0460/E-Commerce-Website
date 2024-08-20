@@ -33,17 +33,21 @@ class Orders(models.Model):
         ('Delivered','Delivered'),
     )
     customer=models.ForeignKey('Customer', on_delete=models.CASCADE,null=True)
-    product=models.ForeignKey('Product',on_delete=models.CASCADE,null=True)
     email = models.CharField(max_length=50,null=True)
     address = models.CharField(max_length=500,null=True)
     mobile = models.CharField(max_length=20,null=True)
     order_date= models.DateField(auto_now_add=True,null=True)
     status=models.CharField(max_length=50,null=True,choices=STATUS)
 
+class OrderItems(models.Model):
+    order = models.ForeignKey('Orders', on_delete=models.CASCADE, null=True)
+    product = product=models.ForeignKey('Product',on_delete=models.CASCADE,null=True)
+    quantity = models.PositiveIntegerField()
 
 class Feedback(models.Model):
     name=models.CharField(max_length=40)
-    feedback=models.CharField(max_length=500)
+    email=models.EmailField(blank=True)
+    feedback=models.TextField(max_length=500)
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return self.name

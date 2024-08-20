@@ -157,41 +157,20 @@ p {
     border-color: #ff2b00;
     border-radius: 1px
 }
+    
 
 </style>
 <br>
 <h3 style="text-align:center;">Thank You For Your Order  <strong>{{request.user}}</strong> !</h3> <br><br>
 <div class="container">
     <header class="card-header" style="text-align:center;"> My Orders / Tracking </header>
+</div><br>
+<div class="container">
 
-    {% for products,order in data %}
+    {% for orderList,order in data %}
 
     <article class="card">
         <div class="card-body">
-            <ul class="row" style="margin-left:20px;margin-top:20px;">
-                <li class="col-md-4">
-                  <figure class="itemside mb-3">
-                    {%for product in products%}
-                      <div class="aside"><img src="{% static product.product_image.url %}" class="img-sm border"></div>
-                      <figcaption class="info align-self-center">
-
-                          <p class="title"><strong>Name : </strong>{{product.name}} <br> <strong>Description : </strong>{{product.description}}</p> <span class="text-muted"><strong>Price : </strong>{{product.price}} </span>
-
-                      </figcaption>
-
-                  </figure>
-                </li>
-                <li class="col-md-4">
-                    <div class="col"> <strong>Shipment Address:</strong> <br> {{order.address}}</div>
-                </li>
-                <li class="col-md-4">
-                    <div class="col"> <strong>Status:</strong> <br> {{order.status}} </div> <br>
-                    <h4><a style="text-decoration:none; color:blue;" href="{% url 'download-invoice' order.id product.id  %}" >Download Invoice</a></h4>
-                </li>
-                {%endfor%}
-            </ul>
-            <hr>
-
             <div class="track">
                 {%if order.status == 'Pending' %}
                 <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
@@ -215,6 +194,53 @@ p {
                 <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
                 {%endif%}
             </div>
+            
+            <div class="container-fluid" style="margin: 15px;">
+            <ul class="list-group" style="display:block; list-style-position: inside;">
+                <li class="list-group-item list-group-item-action flex-column align-items-start" >
+                    <div class="row">
+                    <div class="col-md-6 text-center" style="border-right: 1px solid black;"> <strong>Shipment Address:</strong> <br> {{order.address}}</div>
+                    
+                    <div class="col-md-6 text-center"> <strong>Status:  </strong>  {{order.status}} 
+                    <h5><a style="text-decoration:none; color:blue;" href="{% url 'download-invoice' order.id %}" >Download Invoice</a></h5></div> </div>
+                </li>
+                <hr>
+                <li class="list-group-item list-group-item-action flex-column align-items-start" >
+                    <div class="row table">
+                        <div class="col-md-2 text-center">Product Image</div>
+                        <div class="col-md-3 text-center">Product Name</div>
+                        <div class="col-md-3 text-center">Product Desc</div>
+                        <div class="col-md-2 text-center">Price</div>
+                        <div class="col-md-2 text-center">Quantity</div>
+                    </div>
+                </li>
+                {%for p, q in orderList.items%}
+                <li class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="row">
+                        <div class="col-md-2 text-center"><img src="{% static p.product_image.url %}" class="img-sm border"></div>
+                        <div class="col-md-3 text-center">{{p.name}}</div>
+                        <div class="col-md-3 text-center">{{p.description}}</div>
+                        <div class="col-md-2 text-center">{{p.price}}</div>
+                        <div class="col-md-2 text-center">{{q}}</div>
+                    </div>
+                  <!-- <figure class="itemside mb-3">
+                      <div class="aside"><img src="{% static p.product_image.url %}" class="img-sm border"></div>
+                      <figcaption class="info align-self-center">
+
+                          <p class="title"><strong>Name : </strong>{{p.name}} <br> <strong>Description : </strong>{{p.description}}</p> <span class="text-muted"><strong>Price : </strong>{{p.price}} </span>
+                          <span class="text-muted"><strong>Quantity : </strong>{{q}} </span>
+
+                      </figcaption>
+
+                  </figure> -->
+                </li>
+                {%endfor%}
+                
+            </ul>
+            </div>
+            
+
+            
 
         </div>
     </article><br>

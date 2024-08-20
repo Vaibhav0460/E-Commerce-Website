@@ -23,7 +23,7 @@ urlpatterns = [
     path('view-feedback', views.view_feedback_view,name='view-feedback'),
 
     path('adminclick', views.adminclick_view),
-    path('adminlogin', LoginView.as_view(template_name='ecom/adminlogin.html'),name='adminlogin'),
+    path('adminlogin', LoginView.as_view(template_name='ss/adminlogin.html'),name='adminlogin'),
     # path('adminlogin', views.admin_dashboard_view,name='admin-dashboard'),
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
 
@@ -42,18 +42,21 @@ urlpatterns = [
 
 
     path('customersignup', views.customer_signup_view),
-    path('customerlogin', LoginView.as_view(template_name='ecom/customerlogin.html'),name='customerlogin'),
+    # path('customerlogin', LoginView.as_view(template_name='ecom/customerlogin.html'),name='customerlogin'),
+    path('customerlogin', LoginView.as_view(template_name='ss/customerlogin.html'),name='customerlogin'),
     path('customer-home', views.customer_home_view,name='customer-home'),
     path('my-order', views.my_order_view,name='my-order'),
     path('my-profile', views.my_profile_view,name='my-profile'),
     path('edit-profile', views.edit_profile_view,name='edit-profile'),
-    path('download-invoice/<int:orderID>/<int:productID>', views.download_invoice_view,name='download-invoice'),
+    path('download-invoice/<int:orderID>', views.download_invoice_view,name='download-invoice'),
 
 
     path('add-to-cart/<int:pk>', views.add_to_cart_view,name='add-to-cart'),
     path('cart', views.cart_view,name='cart'),
-    path('remove-from-cart/<int:pk>', views.remove_from_cart_view,name='remove-from-cart'),
-    path('customer-address', views.customer_address_view,name='customer-address'),
+    path('cart-remove/<int:pk>', views.cart_remove_view,name='cart-remove'),
+    path('cart-add/<int:pk>', views.cart_add_view,name='cart-add'),
+    path('cart-delete/<int:pk>', views.cart_delete_view,name='cart-delete'),
+    path('checkout', views.checkout_view,name='checkout'),
     path('payment-success', views.payment_success_view,name='payment-success'),
 
 
